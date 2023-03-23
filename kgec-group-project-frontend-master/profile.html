@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="profile_style.css">
+</head>
+
+<body>
+  <div id="preloader"></div>
+  <div class="container">
+    <div class="navigation">
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="analytics-outline"></ion-icon>
+
+            </span>
+            <span class="title">User Dashboard</span>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="clipboard-outline"></ion-icon>
+            </span>
+            <span class="title">Job Profile</span>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="person-circle-outline"></ion-icon>
+
+            </span>
+            <span class="title">My Profile</span>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="easel-outline"></ion-icon>
+            </span>
+            <span class="title">Interviews</span>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="notifications-outline"></ion-icon>
+
+            </span>
+            <span class="title">Notification</span>
+        </li>
+      </ul>
+
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </span>
+            <span class="title">Resume</span>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="information-circle-outline"></ion-icon>
+            </span>
+            <span class="title">Help</span>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="index.html">
+            <span class="icon">
+              <ion-icon name="log-out-outline"></ion-icon>
+            </span>
+            <span class="title">Sign Out</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="toggle">
+        <ion-icon name="menu-outline"></ion-icon>
+      </div>
+    </div>
+    <h1 id="name"></h1>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+
+    let toggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
+
+    toggle.onclick = function () {
+      navigation.classList.toggle('active');
+      main.classList.toggle('active');
+    }
+
+
+
+    let list = document.querySelectorAll('.navigation li');
+    function activeLink() {
+      list.forEach((item) => item.classList.remove('hovered'));
+      this.classList.add('hovered');
+    }
+    list.forEach((item) => item.addEventListener('mouseover', activeLink));
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+  <script>
+
+    $(window).load(function () {
+      // Animate loader off screen
+      $("#preloader").fadeOut("slow");
+    });
+
+    async function fetchName() {
+      try {
+        const response = await fetch('http://localhost:8080/student/name', {
+          'method': 'POST',
+          'credentials': 'include'
+        });
+        const data = await response.text();
+        document.getElementById('name').innerHTML = data;
+      } catch (error) {
+        alert(error)
+      }
+    }
+    window.onload = fetchName;
+  </script>
+
+</body>
+
+</html>

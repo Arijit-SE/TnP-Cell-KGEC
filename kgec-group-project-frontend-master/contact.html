@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KGEC T&P Cell-Contact Us</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css">
+  <script src="https://kit.fontawesome.com/64b71401cb.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="preloader"></div>
+  <section class="sub-header">
+    <nav>
+      <a href="index.html"><img src="images/kgec_logo.png"></a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="about.html">ABOUT US</a></li>
+          <li><a href="contact.html">CONTACT US</a></li>
+          <li><a href="admin-signin.html">ADMIN</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <h1>Contact Us</h1>
+
+  </section>
+
+  <section class="location">
+
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.8812201808173!2d88.44659801428183!3d22.991394923263545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8952d71094a7f%3A0x8f1c6d3ff467d96b!2sKalyani%20Government%20Engineering%20College!5e0!3m2!1sen!2sin!4v1662213589006!5m2!1sen!2sin"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+  </section>
+
+  <section class="contact-us">
+    <div class="row">
+      <div class="contact-col">
+        <div>
+          <i class="fa fa-home"></i>
+          <span>
+            <h5>Kalyani, Nadia, West Bengal, India.</h5>
+            <p>Pin-741235</p>
+          </span>
+        </div>
+        <div>
+          <i class="fa fa-phone"></i>
+          <span>
+            <h5>+91-0123456789</h5>
+            <p>Contact with us when you need anything.</p>
+          </span>
+        </div>
+        <div>
+          <i class="fa fa-envelope-o"></i>
+          <span>
+            <h5>example@example.com</h5>
+            <p>Email us if you have any query.</p>
+          </span>
+        </div>
+      </div>
+      <div class="contact-col">
+        <form id="form">
+          <label for="name">Name : </label><input type="text" name="name" placeholder="Enter your name" id="name"
+            required oninput="hideSnackbar()">
+          <label for="email">Email ID :</label><input type="email" name="email" id="email"
+            placeholder="Enter Email address" required oninput="hideSnackbar()">
+          <label for="message">Write a message :</label>
+          <textarea rows="8" name="message" placeholder="Enter Message" style="resize: none;" id="message" required
+            oninput="hideSnackbar()"></textarea>
+          <div class="alert alert-success d-none" role="alert">
+            Message sent successfully
+          </div>
+          <div class="col-auto" style="float: right;">
+            <button type="submit" id="submit" class="btn btn-primary d-flex align-items-center mb-2"
+              style="width: 11rem; display: flex; justify-content: center;">
+              <div class="spinner-grow spinner-grow-sm mr-2 d-none" style="margin-bottom: 0px; margin-right: 0.5rem;"
+                role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="footer">
+    <div class="icon">
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-linkedin"></i>
+    </div>
+    <p>Made with <i class="fa fa-heart-o"></i> by KGEC Placement Cell</p>
+  </section>
+
+  <script>
+    var navLinks = document.getElementById("navLinks");
+    function showMenu() {
+      navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+      navLinks.style.right = "-200px";
+    }
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+  <script>
+
+    $(window).load(function () {
+      // Animate loader off screen
+      $("#preloader").fadeOut("slow");
+    });
+    function hideSnackbar() {
+      snackbar.classList.add('d-none');
+    }
+    const snackbar = document.getElementsByClassName("alert")[0];
+    const spinner = document.getElementsByClassName("spinner-grow")[0];
+    document.getElementById('form').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      spinner.classList.remove('d-none');
+      try {
+        const response = await fetch('http://localhost:8080/contact-us/send-message', {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            'name': document.getElementById('name').value,
+            'email': document.getElementById('email').value,
+            'message': document.getElementById('message').value
+          })
+        });
+        if (response.status === 201) {
+          snackbar.classList.remove('d-none');
+        } else {
+          alert('Ups! an error has occured');
+        }
+      } catch (error) {
+        alert('Server unreachable');
+      }
+      spinner.classList.add('d-none');
+    })
+
+  </script>
+
+</body>
+
+</html>

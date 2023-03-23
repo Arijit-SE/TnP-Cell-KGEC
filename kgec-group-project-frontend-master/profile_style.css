@@ -1,0 +1,136 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+body {
+	min-height: 100vh;
+	overflow-x: hidden;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+}
+
+.navigation {
+	position: fixed;
+	width: 300px;
+	height: 100%;
+	background: #f44336;
+	border-left: 10px solid #f44336;
+	border-right: none;
+	transition: 0.5s;
+	overflow: hidden;
+}
+
+.navigation.active {
+	width: 80px;
+}
+
+.navigation ul {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.navigation ul li {
+	position: relative;
+	width: 100%;
+	list-style: none;
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+	background: white;
+}
+
+.navigation ul li:nth-child(1) {
+	margin-bottom: 40px;
+	pointer-events: none;
+}
+
+.navigation ul li a {
+	position: relative;
+	display: flex;
+	width: 100%;
+	display: flex;
+	text-decoration: none;
+	color: white;
+}
+
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+	color: #f44336;
+}
+
+.navigation ul li a .icon {
+	position: relative;
+	display: block;
+	min-width: 60px;
+	height: 60px;
+	line-height: 80px;
+	text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+	font-size: 1.75em;
+}
+
+.navigation ul li a .title {
+	position: relative;
+	display: block;
+	padding: 0 10px;
+	height: 60px;
+	line-height: 60px;
+	text-align: start;
+	white-space: nowrap;
+}
+
+.main {
+	position: absolute;
+	width: calc(100% - 300px);
+	left: 300px;
+	min-height: 100vh;
+	background: #fff;
+	transition: 0.5s;
+}
+
+.main.active {
+	width: calc(100% - 80px);
+	left: 80px;
+}
+
+.topbar {
+	width: 100%;
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 10px;
+}
+
+.toggle {
+	position: relative;
+	width: 60px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.5em;
+	cursor: pointer;
+}
+
+#preloader {
+	background: #0e1120 url(images/load.gif) no-repeat center center;
+	background-size: 50%;
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+}

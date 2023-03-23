@@ -1,0 +1,196 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.swal-footer {
+	text-align: center;
+}
+
+.container {
+	max-width: 1000px;
+	width: 100%;
+	background-color: white;
+	margin: 20px auto;
+	padding: 30px;
+	box-shadow: 5px 5px 10px #73797D;
+	border-radius: 25px;
+}
+
+.container .title {
+	font-size: 24px;
+	font-weight: 700;
+	/* margin-bottom: 25px; */
+	color: darkblue;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.container .form {
+	width: 100%;
+}
+
+.container .form .input_field {
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.container .form .input_field label {
+	width: 200px;
+	margin-right: 80px;
+	font-size: 18px;
+}
+
+.container .form .input_field .input,
+.container .form .input_field .textarea {
+	width: 100%;
+	outline: none;
+	border: 1px solid #73797D;
+	font-size: 15px;
+	padding: 8px 10px;
+	border-radius: 3px;
+	transition: all 0.5s ease;
+}
+
+.container .form .input_field .file-upload-input {
+	width: 100%;
+	font-size: 15px;
+	padding: 8px 2px;
+}
+
+.container .form .input_field .textarea {
+	resize: none;
+	height: 100px;
+}
+
+.container .form .input_field .selectbox {
+	position: relative;
+	width: 100%;
+	height: 37px;
+}
+
+.container .form .input_field .selectbox select {
+	width: 100%;
+	height: 40px;
+	border: 1px solid #73797D;
+	-webkit-appearance: none;
+	appearance: none;
+	padding: 8px 10px;
+	border-radius: 3px;
+	outline: none;
+}
+
+.container .form .input_field .selectbox:before {
+	content: "";
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	border: 8px solid black;
+	border-color: grey transparent transparent transparent;
+	pointer-events: none;
+}
+
+.container .form .input_field p {
+	padding-top: 20px;
+	padding-bottom: 18px;
+	font-size: 18px;
+	color: #757575;
+}
+
+.container .form .input_field .check {
+	width: 0px;
+	height: 15px;
+	position: relative;
+	display: block;
+	cursor: pointer;
+}
+
+.container .form .input_field .check input[type="checkbox"] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.container .form .input_field .check .checkmark {
+	width: 20px;
+	height: 20px;
+	border: 1px solid lightgrey;
+	display: block;
+	position: relative;
+}
+
+.container .form .input_field .check .checkmark:before {
+	content: " ";
+	position: absolute;
+	top: 2px;
+	left: 3px;
+	width: 8px;
+	height: 4px;
+	border: 2px solid;
+	border-color: transparent transparent white white;
+	transform: rotate(-45deg);
+}
+
+.container .form .input_field .check input[type="checkbox"]:checked~.checkmark {
+	background: grey;
+}
+
+.container .form .input_field .check input[type="checkbox"]:checked~.checkmark:before {
+	display: block;
+}
+
+.hero-btn {
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	width: 100%;
+	color: #f44336;
+	border: 1px solid #f44336;
+	border-radius: 10px;
+	padding: 12px 34px;
+	font-size: 20px;
+	background: transparent;
+	position: relative;
+	cursor: pointer;
+}
+
+.hero-btn:hover {
+	border: 1px solid #f44336;
+	background: #f44336;
+	color: #fff;
+	transition: 1s;
+}
+
+@media (max-width: 576px) {
+	.container {
+		margin: 0px;
+		border-radius: 0px;
+	}
+
+	.container .form .input_field {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.container .form .input_field label {
+		margin-bottom: 5px;
+	}
+
+	.container .form .input_field.terms {
+		flex-direction: row;
+	}
+
+	.container .form .input_field p {
+		padding-bottom: 18px;
+		font-size: 20px;
+		color: #757575;
+	}
+
+	.container .form .input_field .check {
+		top: 25px;
+	}
+
+}

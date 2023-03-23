@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Profile | KGEC TnP Cell</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <style>
+    main {
+      margin-left: 25vw;
+      width: 75vw;
+      overflow: hidden;
+    }
+
+    #open-nav-container {
+      position: fixed;
+      top: 0px;
+      width: 100%;
+      z-index: 1;
+      background-color: white;
+      box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      transition: 0.25s ease-in-out;
+      background-color: white;
+      z-index: 2;
+    }
+
+    #stream-select,
+    #specialization-select,
+    #yop-form,
+    #current-percentage-form,
+    #graduation-percentage-form,
+    #higher-secondary-percentage-form,
+    #secondary-percentage-form,
+    #active-backlog-form,
+    #year-gap-form {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      nav {
+        border-radius: 0px;
+        position: absolute;
+      }
+
+      .hidden-nav {
+        translate: -100% 0px;
+      }
+
+      main {
+        margin: 0px;
+        width: 100vw;
+      }
+    }
+
+    @media screen and (min-width: 1080px) {
+      body {
+        background-color: rgb(249, 250, 252);
+      }
+
+      #container {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: space-evenly;
+
+      }
+
+      #container>div {
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      #container h3 {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="w-25 hidden-nav" style="height: 100%; position: fixed; top: 0px; overflow: hidden; ">
+    <ul class="list-group rounded-0">
+      <a class="list-group-item active" href="#">My Profile</a>
+      <a class="list-group-item" href="jobs.html">Jobs</a>
+      <a class="list-group-item" href="log.html">Logout</a>
+      <button id="close-nav" class="btn" style="border: none;"><i class="fa fa-2x fa-close"></i></button>
+    </ul>
+  </nav>
+  <div id="open-nav-container">
+    <button id="open-nav" class="btn" style="border: none;"><i class="fa fa-2x fa-bars"></i></button>
+  </div>
+  <main class="p-2">
+    <h1 style=" text-align: center;">My Profile</h1>
+    <div id="container">
+      <div style="height: min-content; background-color: white">
+        <h3>Basic Details</h3>
+        <div style="margin-left: 1rem;">
+          <h6>Name</h6>
+          <p id="name"></p>
+          <h6>Date of Birth</h6>
+          <p id="dob"></p>
+          <h6>Gender</h6>
+          <p id="gender"></p>
+          <h6>Address</h6>
+          <p id="address"></p>
+          <h6>Email</h6>
+          <p id="email"></p>
+          <h6>Phone</h6>
+          <p id="phone"></p>
+        </div>
+      </div>
+      <div style="background-color: white">
+        <h3>Academic Details</h3>
+        <div style="margin-left: 1rem;">
+          <div style="display: flex; align-items: center;">
+            <h6>Stream</h6>
+            <button class="btn" style="border: none;" id="edit-stream"><i class="fa fa-pen"></i></button>
+          </div>
+          <p id="stream"></p>
+          <select class="form-select" id="stream-select" onfocus="this.selectedIndex = -1;">
+            <option value="" disabled selected>Select your stream</option>
+            <option value="BTech">BTech</option>
+            <option value="MTech">MTech</option>
+            <option value="MCA">MCA</option>
+          </select>
+          <div style="display: flex; align-items: center;">
+            <h6>Department</h6>
+            <button class="btn" style="border: none;" id="edit-specialization"><i class="fa fa-pen"></i></button>
+          </div>
+          <p id="specialization"></p>
+          <select class="form-select" id="specialization-select" onfocus="this.selectedIndex = -1;">
+            <option value="" disabled selected>Select your specialization</option>
+            <option value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="ECE">ECE</option>
+            <option value="EE">EE</option>
+            <option value="ME">ME</option>
+            <option value="PE">PE</option>
+            <option value="CA">CA</option>
+          </select>
+          <div style="display: flex; align-items: center;">
+            <h6>Year of Passing</h6>
+            <button class="btn" style="border: none;" id="edit-year-of-passing"><i class="fa fa-pen"></i></button>
+          </div>
+          <p id="year-of-passing"></p>
+          <form id="yop-form">
+            <input type="text" class="form-control" style="margin-bottom: 0.5rem;" id="new-year-of-passing"
+              pattern="[0-9]{4}" required>
+            <input type="submit" class="btn btn-primary">
+          </form>
+          <div style="display: flex; align-items: center;">
+            <h6>Current Percentage</h6>
+            <button class="btn" style="border: none;" id="edit-current-percentage"><i class="fa fa-pen"></i></button>
+          </div>
+          <p id="current-percentage"></p>
+          <form id="current-percentage-form">
+            <input type="number" step="0.01" class="form-control" style="margin-bottom: 0.5rem;"
+              id="new-current-percentage" required>
+            <input type="submit" class="btn btn-primary">
+          </form>
+          <div style="display: flex; align-items: center;">
+            <h6>Graduation Percentage (For MTech and MCA)</h6>
+            <button class="btn" style="border: none;" id="edit-graduation-percentage"><i class="fa fa-pen"></i></button>
+          </div>
+          <p id="graduation-percentage"></p>
+          <form id="graduation-percentage-form">
+            <input type="number" step="0.01" class="form-control" style="margin-bottom: 0.5rem;"
+              id="new-graduation-percentage" required>
+            <input type="submit" class="btn btn-primary">
+          </form>
+          <div style="display: flex; align-items: center;">
+            <h6>Higher Secondary / Diploma Percentage</h6>
+            <button class="btn" style="border: none;" id="edit-higher-secondary-percentage"><i
+                class="fa fa-pen"></i></button>
+          </div>
+          <p id="higher-secondary-percentage">82%</p>
+          <form id="higher-secondary-percentage-form">
+            <input type="number" step="0.01" class="form-control" style="margin-bottom: 0.5rem;"
+              id="new-higher-secondary-percentage" required>
+            <input type="submit" class="btn btn-primary">
+          </form>
+          <div style="display: flex; align-items: center;">
+            <h6>Secondary Percentage</h6>
+            <button class="btn" style="border: none;" id="edit-secondary-percentage"><i class="fa fa-pen"></i></button>
+          </div>
+          <p id="secondary-percentage"></p>
+          <form id="secondary-percentage-form">
+            <input type="number" step="0.01" class="form-control" style="margin-bottom: 0.5rem;"
+              id="new-secondary-percentage" required>
+            <input type="submit" class="btn btn-primary">
+          </form>
+          <div style="display: flex; align-items: center;">
+            <h6>Active Backlogs</h6>
+            <button class="btn" style="border: none;" id="edit-active-backlog"><i class="fa fa-pen"></i></button>
+          </div>
+          <p id="active-backlog"></p>
+          <form id="active-backlog-form">
+            <input type="text" pattern="[0-9]{1}" class="form-control" style="margin-bottom: 0.5rem;"
+              id="new-active-backlog" required>
+            <input type="submit" class="btn btn-primary">
+          </form>
+          <div style="display: flex; align-items: center;">
+            <h6>Year Gaps</h6>
+            <button class="btn" style="border: none;" id="edit-year-gap"><i class="fa fa-pen"></i></button>
+          </div>
+          <p id="year-gap">0</p>
+          <form id="year-gap-form">
+            <input type="text" pattern="[0-9]{1}" class="form-control" style="margin-bottom: 0.5rem;" id="new-year-gap"
+              required>
+            <input type="submit" class="btn btn-primary">
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("wheel", function (event) {
+    if (document.activeElement.type === "number") {
+      document.activeElement.blur();
+    }
+  });
+
+  window.addEventListener('resize', displayProperly);
+
+  const openNav = document.getElementById('open-nav');
+  openNav.addEventListener('click', function () {
+    document.getElementsByTagName('nav')[0].classList.remove('hidden-nav');
+  })
+
+  const closeNav = document.getElementById('close-nav');
+  closeNav.addEventListener('click', function () {
+    document.getElementsByTagName('nav')[0].classList.add('hidden-nav');
+  })
+
+  let student = null;
+  async function fetchStudent() {
+    try {
+      const response = await fetch('http://localhost:8080/student/', {
+        credentials: 'include'
+      });
+      if (response.status === 200) {
+        student = await response.json();
+        document.getElementById('name').innerHTML = student.name;
+        let date = '';
+        date = date + student.dateOfBirth.slice(8, 10);
+        date = date + '/'
+        date = date + student.dateOfBirth.slice(5, 7);
+        date = date + '/'
+        date = date + student.dateOfBirth.slice(0, 4);
+        document.getElementById('dob').innerHTML = date;
+        document.getElementById('gender').innerHTML = student.gender;
+        document.getElementById('address').innerHTML = student.address;
+        document.getElementById('email').innerHTML = student.email;
+        document.getElementById('phone').innerHTML = student.phone;
+        if (student.stream === null) {
+          document.getElementById('stream').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('stream').innerHTML = student.stream;
+        }
+        if (student.specialization === null) {
+          document.getElementById('specialization').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('specialization').innerHTML = student.specialization;
+        }
+        if (student.passoutYear === null) {
+          document.getElementById('year-of-passing').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('year-of-passing').innerHTML = student.passoutYear;
+        }
+        if (student.currentPercentage === null) {
+          document.getElementById('current-percentage').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('current-percentage').innerHTML = student.currentPercentage + '%';
+        }
+        if (student.graduationPercentage === null) {
+          document.getElementById('graduation-percentage').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('graduation-percentage').innerHTML = student.graduationPercentage + '%';
+        }
+        if (student.higherSecondaryPercentage === null) {
+          document.getElementById('higher-secondary-percentage').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('higher-secondary-percentage').innerHTML = student.higherSecondaryPercentage + '%';
+        }
+        if (student.secondaryPercentage === null) {
+          document.getElementById('secondary-percentage').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('secondary-percentage').innerHTML = student.secondaryPercentage + '%';
+        }
+        if (student.activeBacklogs === null) {
+          document.getElementById('active-backlog').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('active-backlog').innerHTML = student.activeBacklogs;
+        }
+        if (student.educationGap === null) {
+          document.getElementById('year-gap').innerHTML = 'Not Available'
+        } else {
+          document.getElementById('year-gap').innerHTML = student.educationGap;
+        }
+      } else if (response.status === 401) {
+        location.href = 'log.html';
+      } else {
+        location.href = 'log.html';
+      }
+    } catch (error) {
+      location.href = 'log.html';
+    }
+  }
+
+  function displayProperly() {
+    if (window.innerWidth <= 768) {
+      // openNav.style.display = 'block';
+      closeNav.style.display = 'block';
+      document.getElementById('open-nav-container').style.display = 'block';
+      document.getElementsByTagName('main')[0].style.marginTop = '3rem';
+      document.getElementsByTagName('nav')[0].classList.remove('w-25');
+      document.getElementsByTagName('nav')[0].classList.remove('shadow');
+      document.getElementsByTagName('nav')[0].classList.add('w-100');
+      document.getElementsByTagName('nav')[0].classList.add('hidden-nav');
+    } else {
+      // openNav.style.display = 'none';
+      closeNav.style.display = 'none';
+      document.getElementById('open-nav-container').style.display = 'none';
+      document.getElementsByTagName('main')[0].style.marginTop = '0rem';
+      document.getElementsByTagName('nav')[0].classList.add('w-25');
+      document.getElementsByTagName('nav')[0].classList.add('shadow');
+      document.getElementsByTagName('nav')[0].classList.remove('w-100');
+      document.getElementsByTagName('nav')[0].classList.remove('hidden-nav');
+    }
+  }
+
+  window.onload = function () {
+    displayProperly();
+    fetchStudent();
+  };
+
+  const editStreamButton = document.getElementById('edit-stream');
+  const stream = document.getElementById('stream');
+  const streamSelect = document.getElementById('stream-select');
+  editStreamButton.addEventListener('click', function () {
+    editStreamButton.setAttribute('disabled', '');
+    stream.style.display = 'none';
+    streamSelect.style.display = 'block';
+  });
+  streamSelect.addEventListener('change', async function () {
+    try {
+      const response = await fetch('http://localhost:8080/student/stream', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'stream': streamSelect.value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/stream', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editStreamButton.removeAttribute('disabled');
+            streamSelect.style.display = 'none';
+            stream.innerHTML = await response.text();
+            stream.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+
+
+  const editSpecializationButton = document.getElementById('edit-specialization');
+  const specialization = document.getElementById('specialization');
+  const specializationSelect = document.getElementById('specialization-select');
+  editSpecializationButton.addEventListener('click', function () {
+    editSpecializationButton.setAttribute('disabled', '');
+    specialization.style.display = 'none';
+    specializationSelect.style.display = 'block';
+  });
+  specializationSelect.addEventListener('change', async function () {
+    try {
+      const response = await fetch('http://localhost:8080/student/specialization', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'specialization': specializationSelect.value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/specialization', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editSpecializationButton.removeAttribute('disabled');
+            specializationSelect.style.display = 'none';
+            specialization.innerHTML = await response.text();
+            specialization.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+
+
+  const editPassoutYearButton = document.getElementById('edit-year-of-passing');
+  const passoutYear = document.getElementById('year-of-passing');
+  const passoutYearForm = document.getElementById('yop-form');
+  editPassoutYearButton.addEventListener('click', function () {
+    editPassoutYearButton.setAttribute('disabled', '');
+    passoutYear.style.display = 'none';
+    passoutYearForm.style.display = 'block';
+  });
+  passoutYearForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/student/passoutYear', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'passoutYear': document.getElementById('new-year-of-passing').value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/passoutYear', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editPassoutYearButton.removeAttribute('disabled');
+            passoutYearForm.style.display = 'none';
+            passoutYear.innerHTML = await response.text();
+            passoutYear.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+
+
+  const editCurrentPercentageButton = document.getElementById('edit-current-percentage');
+  const currentPercentage = document.getElementById('current-percentage');
+  const currentPercentageForm = document.getElementById('current-percentage-form');
+  editCurrentPercentageButton.addEventListener('click', function () {
+    editCurrentPercentageButton.setAttribute('disabled', '');
+    currentPercentage.style.display = 'none';
+    currentPercentageForm.style.display = 'block';
+  });
+  currentPercentageForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/student/currentPercentage', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'currentPercentage': document.getElementById('new-current-percentage').value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/currentPercentage', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editCurrentPercentageButton.removeAttribute('disabled');
+            currentPercentageForm.style.display = 'none';
+            currentPercentage.innerHTML = await response.text() + '%';
+            currentPercentage.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+
+
+  const editGraduationPercentageButton = document.getElementById('edit-graduation-percentage');
+  const graduationPercentage = document.getElementById('graduation-percentage');
+  const graduationPercentageForm = document.getElementById('graduation-percentage-form');
+  editGraduationPercentageButton.addEventListener('click', function () {
+    editGraduationPercentageButton.setAttribute('disabled', '');
+    graduationPercentage.style.display = 'none';
+    graduationPercentageForm.style.display = 'block';
+  });
+  graduationPercentageForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/student/graduationPercentage', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'graduationPercentage': document.getElementById('new-graduation-percentage').value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/graduationPercentage', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editGraduationPercentageButton.removeAttribute('disabled');
+            graduationPercentageForm.style.display = 'none';
+            graduationPercentage.innerHTML = await response.text() + '%';
+            graduationPercentage.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+
+
+  const editHigherSecondaryPercentageButton = document.getElementById('edit-higher-secondary-percentage');
+  const higherSecondaryPercentage = document.getElementById('higher-secondary-percentage');
+  const higherSecondaryPercentageForm = document.getElementById('higher-secondary-percentage-form');
+  editHigherSecondaryPercentageButton.addEventListener('click', function () {
+    editHigherSecondaryPercentageButton.setAttribute('disabled', '');
+    higherSecondaryPercentage.style.display = 'none';
+    higherSecondaryPercentageForm.style.display = 'block';
+  });
+  higherSecondaryPercentageForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/student/higherSecondaryPercentage', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'higherSecondaryPercentage': document.getElementById('new-higher-secondary-percentage').value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/higherSecondaryPercentage', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editHigherSecondaryPercentageButton.removeAttribute('disabled');
+            higherSecondaryPercentageForm.style.display = 'none';
+            higherSecondaryPercentage.innerHTML = await response.text() + '%';
+            higherSecondaryPercentage.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+
+
+
+  const editsecondaryPercentageButton = document.getElementById('edit-secondary-percentage');
+  const secondaryPercentage = document.getElementById('secondary-percentage');
+  const secondaryPercentageForm = document.getElementById('secondary-percentage-form');
+  editsecondaryPercentageButton.addEventListener('click', function () {
+    editsecondaryPercentageButton.setAttribute('disabled', '');
+    secondaryPercentage.style.display = 'none';
+    secondaryPercentageForm.style.display = 'block';
+  });
+  secondaryPercentageForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/student/secondaryPercentage', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'secondaryPercentage': document.getElementById('new-secondary-percentage').value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/secondaryPercentage', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editsecondaryPercentageButton.removeAttribute('disabled');
+            secondaryPercentageForm.style.display = 'none';
+            secondaryPercentage.innerHTML = await response.text() + '%';
+            secondaryPercentage.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+
+
+  const editActiveBacklogButton = document.getElementById('edit-active-backlog');
+  const activeBacklogs = document.getElementById('active-backlog');
+  const activeBacklogsForm = document.getElementById('active-backlog-form');
+  editActiveBacklogButton.addEventListener('click', function () {
+    editActiveBacklogButton.setAttribute('disabled', '');
+    activeBacklogs.style.display = 'none';
+    activeBacklogsForm.style.display = 'block';
+  });
+  activeBacklogsForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/student/activeBacklogs', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'activeBacklogs': document.getElementById('new-active-backlog').value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/activeBacklogs', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editActiveBacklogButton.removeAttribute('disabled');
+            activeBacklogsForm.style.display = 'none';
+            activeBacklogs.innerHTML = await response.text();
+            activeBacklogs.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+
+
+
+  const editEducationGapButton = document.getElementById('edit-year-gap');
+  const educationGap = document.getElementById('year-gap');
+  const educationGapForm = document.getElementById('year-gap-form');
+  editEducationGapButton.addEventListener('click', function () {
+    editEducationGapButton.setAttribute('disabled', '');
+    educationGap.style.display = 'none';
+    educationGapForm.style.display = 'block';
+  });
+  educationGapForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/student/educationGap', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'educationGap': document.getElementById('new-year-gap').value
+        })
+      });
+      if (response.status === 200) {
+        try {
+          const response = await fetch('http://localhost:8080/student/educationGap', {
+            credentials: 'include',
+          });
+          if (response.status === 200) {
+            editEducationGapButton.removeAttribute('disabled');
+            educationGapForm.style.display = 'none';
+            educationGap.innerHTML = await response.text();
+            educationGap.style.display = 'block';
+          } else {
+            alert('Some error has occured');
+          }
+        } catch (error) {
+          alert('I guess, there is no internet connection');
+        }
+      } else {
+        alert('Some error has occured');
+      }
+    } catch (error) {
+      alert('I guess, there is no internet connection');
+    }
+  });
+</script>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="reg_style.css">
+
+  <title>Company Registration page</title>
+  <!-- <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'
+    integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'
+    crossorigin='anonymous'></script> -->
+  <!-- <script src='https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js'
+    integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49'
+    crossorigin='anonymous'></script> -->
+  <!-- JavaScript Bundle with Popper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+</head>
+
+<body>
+
+  <!-- <form action="#" method="POST" enctype="multipart/form-data" onsubmit="return regForm(this);"> -->
+  <form id="form">
+    <div class="container">
+      <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 2rem;">
+        <a href="../index.html" style="margin-right: 2rem;"><img src="../images/kgec_logo.png" width="70px"></a>
+        <div class="title">
+          Company Registration Form
+        </div>
+      </div>
+
+      <div class="form">
+
+
+        <div class="input_field">
+          <label>Company Name *</label><input type="text" class="input" name="name" id="name" required>
+        </div>
+        <div class="input_field">
+          <label>Contact Person Name *</label><input type="text" class="input" name="contactPersonName"
+            id="contact-person-name" required>
+        </div>
+        <div class="input_field">
+          <label>Industry *</label>
+          <div class="selectbox">
+            <select name="industry" id="industry" required>
+              <option value="">Select Industry</option>
+              <option value="IT & Software">IT & Software</option>
+              <option value="Engineering,Construction">Engineering,Construction</option>
+              <option value="Electronics,Electrical equipment">Electronics,Electrical equipment</option>
+              <option value="Industrial Machinery">Industrial Machinery</option>
+              <option value="Chemical">Chemical</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+        </div>
+        <div class="input_field">
+          <label>Email Address *</label><input type="email" class="input" name="email" id="email"
+            autocomplete="username" required>
+        </div>
+        <div id="invalid-email" style="display: none;">
+          <p style="float: right; display: block; color: red;">Email address already exist</p>
+          <br>
+        </div>
+        <div class="input_field" style="margin-top: 1rem;">
+          <label>Phone Number *</label><input type="text" class="input" name="phone" id="phone" required>
+        </div>
+        <div id="invalid-phone" style="display: none;">
+          <p style="float: right; display: block; color: red;">Phone number already exist</p>
+          <br>
+        </div>
+        <div class="input_field" style="margin-top: 1rem;">
+          <label>Website *</label><input type="text" class="input" name="website" id="website" required>
+        </div>
+        <div class="input_field">
+          <label>Company Mailing Address *</label>
+          <textarea class="textarea" name="address" required id="address"></textarea>
+        </div>
+        <div class="input_field">
+          <label>Password *</label><input type="password" class="input" name="password" autocomplete="new-password"
+            id="password" required>
+        </div>
+        <div class="input_field">
+          <label>Company TAN *</label><input type="file" name="supportingDocument" accept="application/pdf"
+            onchange="readURL(this)" accept="Image/*" style="width: 100%;" required>
+        </div>
+        <!-- <div class="input_field">
+					<label>Confirm Password *</label><input type="password" class="input" name="cpw" required>
+				</div>
+				<div class="input_field terms">
+					<label class="check">
+						<input type="checkbox" required><span class="checkmark"></span>
+					</label>
+					<p>I Agree with the terms and conditions</p>
+				</div> -->
+        <div id="spinner" style="display: flex; justify-content: center; margin-bottom: 0.5rem; display: none;">
+          <div class="spinner-border text-primary" role="status" style="text-align: center;">
+            <span class="sr-only">Loading...</span>
+          </div>.
+        </div>
+        <input type="submit" id="submit" value="Register" class="hero-btn" name="reg">
+      </div>
+
+    </div>
+  </form>
+
+  <script>
+    function successAlert() {
+      swal({
+        title: 'Successful',
+        text: 'You have successfully registered',
+        icon: 'success',
+        button: true,
+        dangerMode: true,
+      }).then(() => {
+        location.href = '../log.html';
+      });
+    }
+
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const submit = document.getElementById('submit');
+    const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    const phoneRegex = /^\d{10}$/;
+
+    email.addEventListener('input', function () {
+      document.getElementById('invalid-email').style.display = 'none';
+      if (document.getElementById('invalid-phone').style.display === 'none') {
+        submit.removeAttribute("disabled");
+      }
+      if (emailRegex.test(email.value) === false) {
+        email.setCustomValidity('Please match the requested format.');
+      } else {
+        email.setCustomValidity('');
+      }
+    });
+
+    phone.addEventListener('input', function () {
+      document.getElementById('invalid-phone').style.display = 'none';
+      if (document.getElementById('invalid-email').style.display === 'none') {
+        submit.removeAttribute("disabled");
+      }
+      if (phoneRegex.test(phone.value) === false) {
+        phone.setCustomValidity('Please match the requested format.');
+      } else {
+        phone.setCustomValidity('');
+      }
+    });
+    const spinner = document.getElementById('spinner');
+
+    document.getElementById('form').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      spinner.style.display = 'flex';
+      try {
+        const response = await fetch("http://localhost:8080/company", {
+          "method": "POST",
+          "headers": {
+            // "Content-Type": "application/json"
+            // "Content-Type": "multipart/form-data"
+          },
+          // "body": JSON.stringify({
+          //   name: document.getElementById('name').value,
+          //   contactPersonName: document.getElementById('contact-person-name').value,
+          //   industry: document.getElementById('industry').value,
+          //   email: document.getElementById('email').value,
+          //   phone: document.getElementById('phone').value,
+          //   website: document.getElementById('website').value,
+          //   address: document.getElementById('address').value,
+          //   password: document.getElementById('password').value
+          // })
+          body: new FormData(document.getElementById("form"))
+        })
+        if (response.status === 201) {
+          successAlert();
+        } else if (response.status === 409) {
+          const body = await response.json();
+          if (body.email === true) {
+            document.getElementById('invalid-email').style.display = 'block';
+          }
+          if (body.phone === true) {
+            document.getElementById('invalid-phone').style.display = 'block';
+          }
+        } else {
+          alert("Invalid Request");
+        }
+      } catch (error) {
+        console.log(error);
+        alert("I guess, there is no internet!");
+      }
+      spinner.style.display = 'none';
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <link rel="stylesheet" href="style_log.css"> -->
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/64b71401cb.js" crossorigin="anonymous"></script>
+
+  <style>
+    .container {
+      background-color: white;
+      box-shadow: 0px 0px 8px 8px rgba(0.1, 0.1, 0.1, 0.1);
+      border-radius: 2.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media(max-width: 700px) {
+      .container {
+        margin-top: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    .icon .fa {
+      color: #f44336;
+      margin: 0 13px;
+      cursor: pointer;
+      padding: 18px 0;
+    }
+
+    .fa-heart-o {
+      color: #f44336;
+    }
+
+    body {
+      background: linear-gradient(rgba(235, 234, 233), rgba(235, 234, 233));
+    }
+  </style>
+
+  <title>Sign Up</title>
+</head>
+
+<body>
+  <div id="preloader"></div>
+  <section class="Form">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-lg-7 px-5 py-5">
+          <a href="index.html"><img src="images/kgec_logo.png" width="70px"></a>
+          <h1>Create an account</h1>
+          <div class="contact-col">
+            <form id="signup-form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" id="name" required>
+              </div>
+              <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" required>
+              </div>
+              <div class="form-group">
+                <label>Gender</label>
+                <div class="form-check ml-4">
+                  <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                  <label class="form-check-label" for="male">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check ml-4">
+                  <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
+                  <label class="form-check-label" for="female">
+                    Female
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input class="form-control" id="address" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" required>
+                <div id="invalid-email-feedback" class="invalid-feedback">
+                  Email address already registered
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" class="form-control" id="phone" required>
+                <div id="invalid-phone-feedback" class="invalid-feedback">
+                  Phone number already registered
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" autocomplete="new-password" class="form-control" id="password" required>
+              </div>
+              <button type="submit" id="submit" class="btn btn-primary d-flex align-items-center mb-2">
+                <div class="spinner-grow spinner-grow-sm mr-2 d-none" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                Submit
+              </button>
+            </form>
+          </div>
+          <p>Already have an account?<a href="./log.html"> Login Here</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="footer d-flex flex-column align-items-center">
+    <div class="icon">
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-linkedin"></i>
+    </div>
+    <p>Made with <i class="fa fa-heart-o"></i> by KGEC Placement Cell</p>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+  <script>
+
+    $(window).load(function () {
+      // Animate loader off screen
+      $("#preloader").fadeOut("slow");
+    });
+    $(function () {
+      var dtToday = new Date();
+
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate();
+      var year = dtToday.getFullYear();
+
+      if (month < 10)
+        month = '0' + month.toString();
+      if (day < 10)
+        day = '0' + day.toString();
+
+      var maxDate = year + '-' + month + '-' + day;
+      $('#dob').attr('max', maxDate);
+    });
+  </script>
+
+</body>
+
+<script>
+  const form = document.getElementById("signup-form");
+  const email = document.getElementById("email");
+  const phone = document.getElementById("phone");
+  const submit = document.getElementById("submit");
+  const spinner = document.getElementsByClassName("spinner-grow")[0];
+  const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  const phoneRegex = /^\d{10}$/;
+  email.addEventListener('input', function () {
+    email.classList.remove("is-invalid");
+    if (phone.classList.contains("is-invalid") === false) {
+      submit.removeAttribute("disabled");
+    }
+    if (emailRegex.test(email.value) === false) {
+      email.setCustomValidity('Please match the requested format.');
+    } else {
+      email.setCustomValidity('');
+    }
+  });
+  phone.addEventListener('input', function () {
+    phone.classList.remove("is-invalid");
+    if (email.classList.contains("is-invalid") === false) {
+      submit.removeAttribute("disabled");
+    }
+    if (phoneRegex.test(phone.value) === false) {
+      phone.setCustomValidity('Please match the requested format.');
+    } else {
+      phone.setCustomValidity('');
+    }
+  });
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    spinner.classList.remove('d-none');
+    try {
+      const response = await fetch("http://localhost:8080/student", {
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": JSON.stringify({
+          name: document.getElementById('name').value,
+          dateOfBirth: document.getElementById('dob').value,
+          gender: document.querySelector('input[name="gender"]:checked').value,
+          address: document.getElementById('address').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          password: document.getElementById('password').value
+        })
+      })
+      if (response.status === 201) {
+        location.replace("./log.html");
+      } else if (response.status === 409) {
+        const body = await response.json();
+        submit.setAttribute("disabled", '');
+        if (body.email === true) {
+          email.classList.add("is-invalid");
+        }
+        if (body.phone === true) {
+          phone.classList.add("is-invalid");
+        }
+      } else {
+        alert("Invalid Request");
+      }
+    } catch (error) {
+      alert("I guess, there is no internet!");
+    }
+    spinner.classList.add('d-none');
+  })
+</script>
+
+</html>
